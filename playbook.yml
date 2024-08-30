@@ -17,6 +17,7 @@
           - vim
           - git
           - curl
+          - nginx
         state: present
 
     - name: Ensure the UFW firewall is installed
