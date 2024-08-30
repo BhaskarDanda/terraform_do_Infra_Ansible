@@ -19,7 +19,8 @@ resource "null_resource" "ansible" {
 
   provisioner "local-exec" {
     command = <<EOT
-      ansible-playbook -i inventory.ini playbook.yml
+      export SSH_OPTIONS="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+      ansible-playbook -i inventory.ini playbook.yml --ssh-common-args "$SSH_OPTIONS"
     EOT
   }
 }
