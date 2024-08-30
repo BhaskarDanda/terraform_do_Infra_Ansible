@@ -3,7 +3,7 @@ resource "digitalocean_ssh_key" "example" {
   public_key = file("~/.ssh/id_rsa.pub")
 }
 resource "digitalocean_droplet" "web" {
-  name   = "terraform_do_Infra_Ansible"
+  name   = "terraform_do_infra_ansible"
   image  = "ubuntu-20-04-x64"
   size   = "s-1vcpu-1gb"
   region = "blr1"
