@@ -1,0 +1,41 @@
+---
+- name: Simple Ubuntu Playbook
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Upgrade all packages
+      apt:
+        upgrade: dist
+
+    - name: Install basic packages
+      apt:
+        name:
+          - vim
+          - git
+          - curl
+          - nginx
+        state: present
+
+    - name: Ensure the UFW firewall is installed
+      apt:
+        name: ufw
+        state: present
+
+    - name: Ensure UFW is enabled
+      ufw:
+        state: enabled
+
+    - name: Allow SSH through UFW
+      ufw:
+        rule: allow
+        name: OpenSSH
+
+    - name: Ensure the Nginx service is running
+      service:
+        name: nginx
+        state: started
+        enabled: yes
